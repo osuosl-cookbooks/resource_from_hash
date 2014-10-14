@@ -15,7 +15,7 @@ For convenience, the resource provides two actions:
 The following is a basic example of usage:
 
 ```ruby
-hash = {
+data = {
   :resource => "package",
   :name => "git",
   :attributes => {
@@ -25,7 +25,7 @@ hash = {
 }
 
 resource_from_hash "test" do
-  hash hash
+  hash data
   action :do
 end
 ```
