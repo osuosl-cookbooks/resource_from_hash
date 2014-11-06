@@ -1,3 +1,21 @@
+def stringSymbol(s)
+  if s.class == String
+    return s.to_sym
+  else
+    return s.to_s
+  end
+end
+
+def indifferentAccess(hash, key)
+  if hash.has_key?(key)
+    return hash[key]
+  else
+    key = stringSymbol(key)
+    return hash[key] if hash.has_key?(key)
+    return nil
+  end
+end
+
 class Chef
   class Resource::ResourceFromHash < Resource
     include Poise
@@ -5,7 +23,7 @@ class Chef
 
     actions(:do, :log)
     attribute(:hash, kind_of: Hash, default: {})
-    attribute(:res, kind_of: Class, default: lazy { eval "Chef::Resource::#{convert_to_class_name(hash['resource'])}" })
+    attribute(:res, kind_of: Class, default: lazy { eval "Chef::Resource::#{convert_to_class_name(indifferentAccess(hash,'resource'))}" })
 
   end
 
@@ -19,12 +37,12 @@ class Chef
     def action_do
       # Here be dragons..
       prefix = "Proc.new {\n"
-      body = new_resource.hash['attributes'].to_a.collect{ |a| "#{a.first} #{a.last.inspect}" }.join("\n")
+      body = indifferentAccess(new_resource.hash, 'attributes').to_a.collect{ |a| "#{a.first} #{a.last.inspect}" }.join("\n")
       suffix = "}"
 
       block = eval(prefix + body + suffix)
 
-      eval("#{new_resource.res.dsl_name}(#{new_resource.hash['name'].inspect},&block)")
+      eval("#{new_resource.res.dsl_name}(#{indifferentAccess(new_resource.hash, 'name').inspect},&block)")
     end
   end
 end
