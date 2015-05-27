@@ -6,4 +6,4 @@ description      'Installs/Configures resource_from_hash'
 long_description 'Installs/Configures resource_from_hash'
 version          '0.1.2'
 
-depends 'poise'
+depends 'poise', '< 2.0.0'
