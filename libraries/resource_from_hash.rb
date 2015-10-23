@@ -1,3 +1,5 @@
+require 'poise'
+
 def stringSymbol(s)
   if s.class == String
     return s.to_sym
@@ -19,6 +21,7 @@ end
 class Chef
   class Resource::ResourceFromHash < Resource
     include Poise
+    provides(:resource_from_hash)
     require 'chef/mixin/convert_to_class_name'
 
     actions(:do, :log)
@@ -29,6 +32,7 @@ class Chef
 
   class Provider::ResourceFromHash < Provider
     include Poise
+    provides(:resource_from_hash)
 
     def action_log
       Chef::Log.info "Logging resource hash #{new_resource.name} with the following attributes: #{new_resource.hash}"

@@ -6,11 +6,11 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu-12.04
-  - name: centos-6.4
+  - name: centos-6.7
+  - name: centos-7.1
 
 suites:
   - name: default
     run_list:
-      - recipe[resource_from_hash::default]
+      - recipe[resource_from_hash_test::default]
     attributes:
