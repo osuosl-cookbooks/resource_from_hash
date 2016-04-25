@@ -8,6 +8,14 @@ def stringSymbol(s)
   end
 end
 
+def create_attr(a)
+  if a.last.is_a?(Hash)
+    "#{a.first}(#{a.last.inspect})"
+  else
+    "#{a.first} #{a.last.inspect}"
+  end
+end
+
 def indifferentAccess(hash, key)
   if hash.has_key?(key)
     return hash[key]
@@ -41,7 +49,7 @@ class Chef
     def action_do
       # Here be dragons..
       prefix = "Proc.new {\n"
-      body = indifferentAccess(new_resource.hash, 'attributes').to_a.collect{ |a| "#{a.first} #{a.last.inspect}" }.join("\n")
+      body = indifferentAccess(new_resource.hash, 'attributes').to_a.collect{ |a| create_attr(a) }.join("\n")
       suffix = "}"
 
       block = eval(prefix + body + suffix)

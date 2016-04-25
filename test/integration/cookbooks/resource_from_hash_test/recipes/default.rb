@@ -38,3 +38,17 @@ resource_from_hash 'db_test' do
   hash db.to_hash
   action :do
 end
+
+serv = {
+  :resource => "service",
+  :name => "sshd",
+  :attributes => {
+    :supports => {:restart => true, :stop => true, :start => true},
+    :action => [:start, :enable]
+  }
+}
+
+resource_from_hash "service_test" do
+  hash serv
+  action :do
+end
