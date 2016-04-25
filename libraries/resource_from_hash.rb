@@ -29,8 +29,8 @@ class Chef
       actions(:do, :log)
       attribute(:hash, kind_of: Hash, default: {})
       attribute(:res, kind_of: Class, default: lazy do
-        eval 'Chef::Resource::'\
-          "#{convert_to_class_name(indifferent_access(hash, 'resource'))}"
+        eval 'Chef::Resource::' +
+          convert_to_class_name(indifferent_access(hash, 'resource'))
       end)
     end
   end
@@ -54,7 +54,7 @@ class Chef
 
         # rubocop:disable Lint/UselessAssignment
         block = eval(prefix + body + suffix)
-        resource = "#{new_resource.res.dsl_name}"\
+        resource = new_resource.res.dsl_name +
           "(#{indifferent_access(new_resource.hash, 'name').inspect},&block)"
         # rubocop:enable Lint/UselessAssignment
         eval(resource)
