@@ -4,14 +4,6 @@ def string_symbol(s)
   s.is_a?(String) ? s.to_sym : s.to_s
 end
 
-def attr_to_string(a)
-  if a.last.is_a?(Hash)
-    "#{a.first}(#{a.last.inspect})"
-  else
-    "#{a.first} #{a.last.inspect}"
-  end
-end
-
 def indifferent_access(hash, key)
   return hash[key] if hash.key?(key)
   key = string_symbol(key)
@@ -49,13 +41,15 @@ class Chef
         # Here be dragons..
         prefix = "Proc.new {\n"
         attributes = indifferent_access(new_resource.hash, 'attributes').to_a
-        body = attributes.collect { |a| attr_to_string(a) }.join("\n")
+        body = attributes.collect do |a|
+          "#{a.first}(#{a.last.inspect})"
+        end.join("\n")
         suffix = '}'
 
         # rubocop:disable Lint/UselessAssignment
         block = eval(prefix + body + suffix)
-        resource = new_resource.res.dsl_name +
-          "(#{indifferent_access(new_resource.hash, 'name').inspect},&block)"
+        name = indifferent_access(new_resource.hash, 'name').inspect
+        resource = new_resource.res.dsl_name + "(#{name},&block)"
         # rubocop:enable Lint/UselessAssignment
         eval(resource)
       end
