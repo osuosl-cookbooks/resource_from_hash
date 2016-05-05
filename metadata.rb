@@ -9,3 +9,4 @@ version          '0.1.4'
 depends 'poise', '> 2.0.0'
 
 supports         'centos', '~> 6.0'
+supports         'centos', '~> 7.0'
