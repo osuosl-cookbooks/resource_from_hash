@@ -37,6 +37,7 @@ class Chef
           "with the following attributes: #{new_resource.hash}"
       end
 
+      # rubocop:disable MethodLength
       def action_do
         # Here be dragons..
         prefix = "Proc.new {\n"
@@ -49,10 +50,12 @@ class Chef
         # rubocop:disable Lint/UselessAssignment
         block = eval(prefix + body + suffix)
         name = indifferent_access(new_resource.hash, 'name').inspect
-        resource = new_resource.res.dsl_name + "(#{name},&block)"
+        resource = string_symbol(new_resource.res.resource_name) +
+                   "(#{name},&block)"
         # rubocop:enable Lint/UselessAssignment
         eval(resource)
       end
+      # rubocop:enable MethodLength
     end
   end
 end
