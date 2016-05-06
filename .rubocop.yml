@@ -1,0 +1,12 @@
+AllCops:
+  Include:
+    - '**/Berksfile'
+    - '**/Cheffile'
+  Exclude:
+    - '**/metadata.rb'
+Documentation:
+  Enabled: false
+Eval:
+  Enabled: false
+AbcSize:
+  Enabled: false

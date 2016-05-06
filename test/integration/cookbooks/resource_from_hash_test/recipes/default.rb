@@ -18,23 +18,35 @@
 #
 
 data = {
-  :resource => "package",
-  :name => "git",
-  :attributes => {
-    :action => :upgrade
+  resource: 'package',
+  name: 'git',
+  attributes: {
+    action: :upgrade
   }
-
 }
 
-resource_from_hash "test" do
+resource_from_hash 'test' do
   hash data
   action :do
 end
-
 
 db = data_bag_item('resource_from_hash_test', 'test')
 
 resource_from_hash 'db_test' do
   hash db.to_hash
+  action :do
+end
+
+serv = {
+  resource: 'service',
+  name: 'sshd',
+  attributes: {
+    supports: { restart: true, stop: true, start: true },
+    action: [:start, :enable]
+  }
+}
+
+resource_from_hash 'service_test' do
+  hash serv
   action :do
 end

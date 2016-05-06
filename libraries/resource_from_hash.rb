@@ -1,52 +1,61 @@
 require 'poise'
 
-def stringSymbol(s)
-  if s.class == String
-    return s.to_sym
-  else
-    return s.to_s
-  end
+def string_symbol(s)
+  s.is_a?(String) ? s.to_sym : s.to_s
 end
 
-def indifferentAccess(hash, key)
-  if hash.has_key?(key)
-    return hash[key]
-  else
-    key = stringSymbol(key)
-    return hash[key] if hash.has_key?(key)
-    return nil
-  end
+def indifferent_access(hash, key)
+  return hash[key] if hash.key?(key)
+  key = string_symbol(key)
+  return hash[key] if hash.key?(key)
+  nil
 end
 
 class Chef
-  class Resource::ResourceFromHash < Resource
-    include Poise
-    provides(:resource_from_hash)
-    require 'chef/mixin/convert_to_class_name'
+  class Resource
+    class ResourceFromHash < Resource
+      include Poise
+      provides(:resource_from_hash)
+      require 'chef/mixin/convert_to_class_name'
 
-    actions(:do, :log)
-    attribute(:hash, kind_of: Hash, default: {})
-    attribute(:res, kind_of: Class, default: lazy { eval "Chef::Resource::#{convert_to_class_name(indifferentAccess(hash,'resource'))}" })
-
+      actions(:do, :log)
+      attribute(:hash, kind_of: Hash, default: {})
+      attribute(:res, kind_of: Class, default: lazy do
+        eval 'Chef::Resource::' +
+          convert_to_class_name(indifferent_access(hash, 'resource'))
+      end)
+    end
   end
 
-  class Provider::ResourceFromHash < Provider
-    include Poise
-    provides(:resource_from_hash)
+  class Provider
+    class ResourceFromHash < Provider
+      include Poise
+      provides(:resource_from_hash)
 
-    def action_log
-      Chef::Log.info "Logging resource hash #{new_resource.name} with the following attributes: #{new_resource.hash}"
-    end
+      def action_log
+        Chef::Log.info "Logging resource hash #{new_resource.name} "\
+          "with the following attributes: #{new_resource.hash}"
+      end
 
-    def action_do
-      # Here be dragons..
-      prefix = "Proc.new {\n"
-      body = indifferentAccess(new_resource.hash, 'attributes').to_a.collect{ |a| "#{a.first} #{a.last.inspect}" }.join("\n")
-      suffix = "}"
+      # rubocop:disable MethodLength
+      def action_do
+        # Here be dragons..
+        prefix = "Proc.new {\n"
+        attributes = indifferent_access(new_resource.hash, 'attributes').to_a
+        body = attributes.collect do |a|
+          "#{a.first}(#{a.last.inspect})"
+        end.join("\n")
+        suffix = '}'
 
-      block = eval(prefix + body + suffix)
-
-      eval("#{new_resource.res.dsl_name}(#{indifferentAccess(new_resource.hash, 'name').inspect},&block)")
+        # rubocop:disable Lint/UselessAssignment
+        block = eval(prefix + body + suffix)
+        name = indifferent_access(new_resource.hash, 'name').inspect
+        resource = string_symbol(new_resource.res.resource_name) +
+                   "(#{name},&block)"
+        # rubocop:enable Lint/UselessAssignment
+        eval(resource)
+      end
+      # rubocop:enable MethodLength
     end
   end
 end
