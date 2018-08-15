@@ -26,14 +26,14 @@ data = {
 }
 
 resource_from_hash 'test' do
-  hash data
+  attrs_hash data
   action :do
 end
 
 db = data_bag_item('resource_from_hash_test', 'test')
 
 resource_from_hash 'db_test' do
-  hash db.to_hash
+  attrs_hash db.to_hash
   action :do
 end
 
@@ -47,6 +47,6 @@ serv = {
 }
 
 resource_from_hash 'service_test' do
-  hash serv
+  attrs_hash serv
   action :do
 end
