@@ -12,7 +12,7 @@ action :do do
   declare_resource(res_type, res_name) do
     attrs.to_a.each do |attr|
       key, val = attr
-      self.send(key.to_sym, val)
+      send(key.to_sym, val)
     end
   end
 end
