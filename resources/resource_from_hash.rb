@@ -18,8 +18,7 @@ action :do do
 end
 
 action :log do
-  Chef::Log.info "Logging resource hash #{name} "\
-    "with the following attributes: #{attrs_hash}"
+  Chef::Log.info "Logging resource hash #{name} with the following attributes: #{attrs_hash}"
 end
 
 action_class do
