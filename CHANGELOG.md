@@ -1,3 +1,7 @@
+1.0.0 (2018-08-21)
+------------------
+- Convert resource_from_hash to a custom resource and simplify
+
 # 0.1.5
 [#10](https://github.com/osuosl-cookbooks/resource_from_hash/pull/10) Add support
 for hash attributes
