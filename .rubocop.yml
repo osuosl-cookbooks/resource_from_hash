@@ -4,9 +4,15 @@ AllCops:
     - '**/Cheffile'
   Exclude:
     - '**/metadata.rb'
+
+Metrics/LineLength:
+  Max: 120
+
 Documentation:
   Enabled: false
+
 Eval:
   Enabled: false
+
 AbcSize:
   Enabled: false
