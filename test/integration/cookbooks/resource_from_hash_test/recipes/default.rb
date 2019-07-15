@@ -21,8 +21,8 @@ data = {
   resource: 'package',
   name: 'git',
   attributes: {
-    action: :upgrade
-  }
+    action: :upgrade,
+  },
 }
 
 resource_from_hash 'test' do
@@ -40,8 +40,8 @@ serv = {
   name: 'sshd',
   attributes: {
     supports: { restart: true, stop: true, start: true },
-    action: [:start, :enable]
-  }
+    action: [:start, :enable],
+  },
 }
 
 resource_from_hash 'service_test' do
