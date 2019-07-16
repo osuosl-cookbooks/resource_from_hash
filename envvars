@@ -1,0 +1,4 @@
+cookbook=resource_from_hash
+version=1.0.0
+envs=*
+pr_link=https://github.com/osuosl-cookbooks/resource_from_hash/pull/11

@@ -1,3 +1,7 @@
+1.1.0 (2019-07-16)
+------------------
+- [WIP] Rename attrs hash
+
 1.0.0 (2018-08-21)
 ------------------
 - Convert resource_from_hash to a custom resource and simplify
