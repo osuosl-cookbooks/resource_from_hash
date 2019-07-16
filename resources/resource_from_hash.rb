@@ -5,9 +5,9 @@ default_action :do
 property :attrs_hash, Hash, required: true, default: {}
 
 action :do do
-  attrs = indifferent_access(attrs_hash, 'attributes')
-  res_type = indifferent_access(attrs_hash, 'resource').to_sym
-  res_name = indifferent_access(attrs_hash, 'name')
+  attrs = indifferent_access(new_resource.attrs_hash, 'attributes')
+  res_type = indifferent_access(new_resource.attrs_hash, 'resource').to_sym
+  res_name = indifferent_access(new_resource.attrs_hash, 'name')
 
   declare_resource(res_type, res_name) do
     attrs.to_a.each do |attr|
@@ -18,7 +18,7 @@ action :do do
 end
 
 action :log do
-  Chef::Log.info "Logging resource hash #{name} with the following attributes: #{attrs_hash}"
+  Chef::Log.info "Logging resource hash #{name} with the following attributes: #{new_resource.attrs_hash}"
 end
 
 action_class do
