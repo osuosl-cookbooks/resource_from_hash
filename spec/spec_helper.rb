@@ -5,16 +5,10 @@ ChefSpec::Coverage.start! { add_filter 'resource_from_hash' }
 
 CENTOS_7 = {
   platform: 'centos',
-  version: '7.4.1708',
-}.freeze
-
-CENTOS_6 = {
-  platform: 'centos',
-  version: '6.9',
+  version: '7',
 }.freeze
 
 ALL_PLATFORMS = [
-  CENTOS_6,
   CENTOS_7,
 ].freeze
 

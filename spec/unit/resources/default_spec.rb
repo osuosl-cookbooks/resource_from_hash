@@ -18,6 +18,12 @@ describe 'resource_from_hash_test::default' do
       it do
         expect(chef_run).to do_resource_from_hash('test')
       end
+      it do
+        expect(chef_run).to do_resource_from_hash('db_test')
+      end
+      it do
+        expect(chef_run).to do_resource_from_hash('service_test')
+      end
     end
   end
 end
