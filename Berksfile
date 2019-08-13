@@ -25,4 +25,5 @@ cookbook 'osl-php', git:
 
 cookbook 'osl-selinux', git:
          'git@github.com:osuosl-cookbooks/osl-selinux.git'
+
 metadata
