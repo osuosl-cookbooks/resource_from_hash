@@ -1,8 +1,6 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-ChefSpec::Coverage.start! { add_filter 'resource_from_hash' }
-
 CENTOS_7 = {
   platform: 'centos',
   version: '7',
@@ -13,5 +11,5 @@ ALL_PLATFORMS = [
 ].freeze
 
 RSpec.configure do |config|
-  config.log_level = :fatal
+  config.log_level = :warn
 end
