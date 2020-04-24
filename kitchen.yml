@@ -1,6 +1,10 @@
 ---
 provisioner:
   name: chef_solo
+  enforce_idempotency: true
+  multiple_converge: 2
+  solo_rb:
+    treat_deprecation_warnings_as_errors: true
   data_bags_path: test/integration/data_bags
 
 verifier: inspec
