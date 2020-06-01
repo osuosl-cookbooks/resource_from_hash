@@ -2,6 +2,7 @@ source 'https://supermarket.chef.io'
 
 solver :ruby, :required
 
+cookbook 'base', git: 'git@github.com:osuosl-cookbooks/base.git'
 cookbook 'osl-apache', git: 'git@github.com:osuosl-cookbooks/osl-apache.git'
 cookbook 'osl-munin', git: 'git@github.com:osuosl-cookbooks/osl-munin.git'
 cookbook 'osl-nrpe', git: 'git@github.com:osuosl-cookbooks/osl-nrpe.git'
