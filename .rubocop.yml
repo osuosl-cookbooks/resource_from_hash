@@ -1,18 +1,6 @@
 AllCops:
-  Include:
-    - '**/Berksfile'
-    - '**/Cheffile'
-  Exclude:
-    - '**/metadata.rb'
-
-Metrics/LineLength:
-  Max: 120
-
-Documentation:
-  Enabled: false
-
-Eval:
-  Enabled: false
-
-AbcSize:
-  Enabled: false
+  TargetChefVersion: 15.latest
+ChefModernize/FoodcriticComments:
+  Enabled: true
+ChefStyle/CopyrightCommentFormat:
+  Enabled: true

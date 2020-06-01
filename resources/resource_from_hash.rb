@@ -2,7 +2,7 @@ resource_name :resource_from_hash
 
 default_action :do
 
-property :attrs_hash, Hash, required: true, default: {}
+property :attrs_hash, Hash, required: true
 
 action :do do
   attrs = indifferent_access(new_resource.attrs_hash, 'attributes')
