@@ -1,4 +1,5 @@
 resource_name :resource_from_hash
+provides :resource_from_hash
 
 default_action :do
 
