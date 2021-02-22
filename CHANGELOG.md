@@ -1,3 +1,7 @@
+1.2.2 (2021-02-22)
+------------------
+- Remove munin references from Berksfile
+
 1.2.1 (2020-08-14)
 ------------------
 - Chef 16 compatibility
