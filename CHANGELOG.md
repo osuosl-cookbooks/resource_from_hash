@@ -1,3 +1,7 @@
+1.3.0 (2021-03-30)
+------------------
+- Remove Centos 6 from this Cookbook
+
 1.2.2 (2021-02-22)
 ------------------
 - Remove munin references from Berksfile
