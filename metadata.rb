@@ -8,5 +8,4 @@ chef_version     '>= 14.0'
 description      'Installs/Configures resource_from_hash'
 version          '1.2.2'
 
-supports         'centos', '~> 6.0'
 supports         'centos', '~> 7.0'
