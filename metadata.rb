@@ -9,3 +9,4 @@ description      'Installs/Configures resource_from_hash'
 version          '2.0.0'
 
 supports         'centos', '~> 7.0'
+supports         'centos', '~> 8.0'

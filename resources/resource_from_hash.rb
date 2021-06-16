@@ -1,5 +1,6 @@
 resource_name :resource_from_hash
 provides :resource_from_hash
+unified_mode true
 
 default_action :do
 
