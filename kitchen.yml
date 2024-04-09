@@ -23,6 +23,7 @@ platforms:
 
 suites:
   - name: test
+    # Fails in dokken due to systemctl command
     run_list:
       - recipe[test-cookbook]
       - recipe[resource_from_hash_test::default]
