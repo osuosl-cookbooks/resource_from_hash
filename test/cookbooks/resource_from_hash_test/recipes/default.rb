@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+package 'openssh-server'
+
 data = {
   resource: 'package',
   name: 'git',
