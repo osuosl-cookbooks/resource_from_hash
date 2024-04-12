@@ -1,3 +1,7 @@
+2.1.1 (2024-04-12)
+------------------
+- Test Kitchen Config Refactor
+
 2.1.0 (2021-06-16)
 ------------------
 - Set unified_mode for custom resources
