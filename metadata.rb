@@ -6,6 +6,6 @@ issues_url       'https://github.com/osuosl-cookbooks/resource_from_hash/issues'
 license          'Apache-2.0'
 chef_version     '>= 16.0'
 description      'Installs/Configures resource_from_hash'
-version          '2.1.1'
+version          '2.1.2'
 
 supports         'almalinux', '~> 8.0'

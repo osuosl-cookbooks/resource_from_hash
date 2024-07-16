@@ -1,3 +1,7 @@
+2.1.2 (2024-07-16)
+------------------
+- Remove support for CentOS 7
+
 2.1.1 (2024-04-12)
 ------------------
 - Test Kitchen Config Refactor
