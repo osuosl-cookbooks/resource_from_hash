@@ -8,5 +8,4 @@ chef_version     '>= 16.0'
 description      'Installs/Configures resource_from_hash'
 version          '2.1.1'
 
-supports         'centos', '~> 7.0'
 supports         'almalinux', '~> 8.0'
