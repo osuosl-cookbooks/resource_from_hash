@@ -9,3 +9,4 @@ description      'Installs/Configures resource_from_hash'
 version          '2.1.2'
 
 supports         'almalinux', '~> 8.0'
+supports         'almalinux', '~> 9.0'
