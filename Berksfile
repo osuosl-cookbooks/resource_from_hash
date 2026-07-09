@@ -12,6 +12,6 @@ cookbook 'osl-resources', git: 'git@github.com:osuosl-cookbooks/osl-resources.gi
 cookbook 'osl-rsync', git: 'git@github.com:osuosl-cookbooks/osl-rsync.git'
 cookbook 'osl-selinux', git: 'git@github.com:osuosl-cookbooks/osl-selinux.git'
 cookbook 'resource_from_hash_test', path: 'test/cookbooks/resource_from_hash_test'
-cookbook 'test-cookbook', git: 'git@github.com:osuosl-cookbooks/test-cookbook.git'
+cookbook 'test-cookbook', git: 'git@github.com:osuosl-cookbooks/test-cookbook.git', branch: 'main'
 
 metadata
